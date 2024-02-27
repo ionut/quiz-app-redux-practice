@@ -12,7 +12,8 @@ const initialState = {
   questions: [],
   // 'loading','error','ready','active','finished'
   status: 'loading',
-  index: 0
+  index: 0,
+  answear: null
 }
 
 function reducer(state, action) {
@@ -23,14 +24,17 @@ function reducer(state, action) {
       return { ...state, status: 'error' }
     case 'start':
       return { ...state, status: 'active' }
+    case 'newAnswear':
+      return { ...state, answear: action.payload }
     default:
       throw new Error("Action unknown")
   }
 }
 
 function App() {
-  const [{ questions, status, index }, dispatch] = useReducer(reducer, initialState)
+  const [{ questions, status, index, answear }, dispatch] = useReducer(reducer, initialState)
 
+  console.log(answear)
   useEffect(() => {
     fetch('http://localhost:2000/questions')
       .then(res => res.json())
@@ -47,7 +51,7 @@ function App() {
         {status === 'loading' && <Loader />}
         {status === 'error' && <Error />}
         {status === 'ready' && <StartScreen questionsNumber={questionsNumber} dispatch={dispatch} />}
-        {status === 'active' && <Question questions={questions[index]} />}
+        {status === 'active' && <Question questions={questions[index]} dispatch={dispatch} answear={answear} />}
       </Main>
     </div>
   )
