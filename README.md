@@ -1,8 +1,15 @@
-# Quiz App Redux Practice
+# Quiz App Practice (useReducer hook)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+What I've learned inside this small project:
 
-Currently, two official plugins are available:
+1. useState vs useReducer
 
--   [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
--   [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+| useState                                                                        | useReducer                                                                               |
+| ------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| **single, independent pieces of state**                                         | **multiple related piece of state and complex state**                                    |
+| update state is inside event handlers or effects **spread over all components** | update states **lives in one central place,decoupled from components**(reducer function) |
+| state is updated with a **setter function**                                     | state is updated by **dispatching and action to a reducer**                              |
+
+2. when to use useReducer?
+
+When you have multiple pieces of state that depend on each other or an complex logic
